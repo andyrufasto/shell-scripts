@@ -1,5 +1,11 @@
 #!/bin/bash
 
+### BEGIN INIT INFO
+# Short-Description : Select and open a config file.
+# Requires          : fzf.
+### END INIT INFO
+
+# Author: Andy Rufasto <andy@andyrufasto.cf>
 
 
 # Menu inicial

@@ -1,5 +1,14 @@
 #!/bin/sh -x
 
+### BEGIN INIT INFO
+# Short-Description : Create a multi-monitor wallpaper with specific
+#                     resolution.
+# Requires          : imagemagick.
+### END INIT INFO
+
+# Author: Andy Rufasto <andy@andyrufasto.cf>
+
+
 image=$(readlink -f "$1")
 base="${image%.*}"
 ext="${image##*.}"
