@@ -1,0 +1,15 @@
+#!/bin/sh
+while :
+do
+	 wal -i ~/Pictures/dyamic/Lakeside/l.png -n -q -s -t
+	 ln -f ~/Pictures/dyamic/Lakeside/l.png ~/Pictures/wallpaper.jpg 
+	 rm ~/.cache/wal/schemes/_home_lain_Pictures_wallpaper_jpg_dark_None_None_1.1.0.json
+	 bspc wm -r
+	for PIC in ~/Pictures/dyamic/Lakeside/*.png
+	do
+		wal -i $PIC -q -e
+		~/scripts/alacritty_colors
+		fish -c source ~/.config/fish/config.fish
+		sleep 20
+	done
+done

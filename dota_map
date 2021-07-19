@@ -1,0 +1,5 @@
+#!/bin/sh
+#xzoom
+#xdotool search --name "xzoom x2" windowactivate key super+s
+xdotool search --name "xzoom x2" windowsize 460 460 windowmove 1950 60
+

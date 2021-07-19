@@ -1,0 +1,119 @@
+#!/bin/bash
+
+
+
+# Menu inicial
+cfg=$(
+cat << EOF | fzf
+alacritty
+autostart
+bash
+bspwm
+fish
+i3
+newsboat
+picom
+polybar
+profile
+qutebrowser
+ranger
+sxhkd
+vim
+xbindkeysrc
+xinitrc
+EOF
+)
+
+# submenus
+
+
+bashf(){
+				bash_op=$(ls ${XDG_CONFIG_HOME}/bash | fzf)
+				vim "${XDG_CONFIG_HOME}/bash/$bash_op"
+}
+
+rangerf(){
+				ranger_op=$(ls ${XDG_CONFIG_HOME}/ranger | fzf)
+				vim "${XDG_CONFIG_HOME}/ranger/$bash_op"
+
+}
+
+fishf(){
+				fish_op=$(ls -p | grep -v /~/.config/fish/ | fzf)
+				vim ~/.config/fish/"$fish_op"
+}
+
+newsboatf(){
+				newsboat_op=$(ls ${XDG_CONFIG_HOME}/newsboat | fzf)
+				vim "${XDG_CONFIG_HOME}/newsboat/$newsboat_op_op"
+}
+
+
+vimf(){
+vim_op=$(
+cat << EOF | fzf
+basic
+coc
+filetype
+mapping
+plugins
+snips
+EOF
+)
+
+case "$vim_op" in
+				"basic")
+						vim ~/.config/vim/basic.vim ;;
+				"coc")
+						vim ~/.config/vim/coc.vim;;
+				"mapping")
+						vim ~/.config/vim/mapping.vim ;;
+				"filetype")
+						vim ~/.config/vim/filetype.vim  ;;
+				"plugins")
+						vim ~/.config/vim/plugins.vim ;;
+				"snips")
+						snipsf ;;
+				"vimrc")
+						vim ~/.vimrc ;;
+esac
+}
+
+snipsf(){
+				snips_op=$(ls ${XDG_CONFIG_HOME}/vim/snips | fzf)
+				vim "${XDG_CONFIG_HOME}"/vim/snips/"$snips_op"
+}
+
+
+# Final case
+
+case "$cfg" in
+				"alacritty")
+								vim ~/.config/alacritty/alacritty.yml ;;
+				"autostart")
+								vim ~/.config/bspwm/autostart.sh	;;
+				"bash")
+							bashf ;;
+				"i3")
+							vim ~/.config/i3/config ;;
+				"bspwm")
+							vim ~/.config/bspwm/bspwmrc;;
+				"fish")
+								fishf;;
+				"newsboat")
+							newsboatf ;;
+				"polybar")
+							vim ${XDG_CONFIG_HOME}/config ;;
+				"profile")
+							vim ~/.profile ;;
+				"picom")
+							vim ${XDG_CONFIG_HOME}/picom/picom.conf ;;
+			"qutebrowser")
+							vim ~/.config/qutebrowser/config.py ;;
+				"ranger")
+							rangerf ;;
+				"sxhkd")
+							vim ${XDG_CONFIG_HOME}/sxhkd/sxhkdrc ;;
+				"vim")
+							vimf ;;
+esac

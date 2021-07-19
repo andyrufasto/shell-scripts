@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# youtube options
+opt=$(
+cat << EOF | rofi -dmenu -p "輸 YouTube options:"
+  mp3
+  playlist
+  mpv
+逸 podcast
+  music
+
+EOF
+)
+
+URL=$(xclip -o -sel c)
+
+# case 
+case "$opt" in
+				"  mp3")
+							youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 "$URL" ;;
+				"  playlist")
+							youtube-dl --ignore-errors -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --yes-playlist "$URL" ;;
+				"  mpv")
+							devour.sh mpv "$URL" ;;
+				"逸 podcast")
+							devour.sh mpv --ytdl-format=18 "$URL" ;;
+				"  music")
+							devour.sh mpv --no-video "$URL" ;;
+esac
